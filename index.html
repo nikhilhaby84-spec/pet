@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawTrack - Pet HR & Talent Management System</title>
+  <meta name="description" content="Premium Pet HR Management System profile dashboard showing salary, performance, workplace misconduct records, and attendance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand-logo">
+        <div class="brand-icon">🐾</div>
+        <div class="brand-info">
+          <h2>PawTrack HR</h2>
+          <span>Pet Workforce Suite</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <p class="menu-label">Main Menu</p>
+        <a href="#overview" class="nav-item active">
+          <span class="icon">📊</span>
+          <span>Employee Profile</span>
+        </a>
+        <a href="#performance" class="nav-item">
+          <span class="icon">⭐</span>
+          <span>Performance & KPIs</span>
+        </a>
+        <a href="#compensation" class="nav-item">
+          <span class="icon">🥩</span>
+          <span>Treats & Salary</span>
+        </a>
+        <a href="#attendance" class="nav-item">
+          <span class="icon">📅</span>
+          <span>Paw Attendance</span>
+        </a>
+        <a href="#conduct" class="nav-item alert-badge-wrapper">
+          <span class="icon">⚠️</span>
+          <span>Conduct Incidents</span>
+          <span class="badge-count">2</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-pet-switch">
+        <label for="petSelector">Switch Pet Employee:</label>
+        <select id="petSelector" class="pet-select">
+          <option value="barnaby">Barnaby von Bark (Chief Barketing)</option>
+          <option value="milo">Milo Whiskerstein (Lead Nap Engineer)</option>
+          <option value="cleo">Cleo Birdman (Head of Flight Ops)</option>
+        </select>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-mini-card">
+          <div class="avatar-sm">👩‍💼</div>
+          <div class="user-details">
+            <strong>Sarah Jenkins</strong>
+            <small>Head of Pet People & Culture</small>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Header -->
+      <header class="top-nav">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" placeholder="Search pet ID, treat slips, disciplinary notes..." aria-label="Search HR database">
+        </div>
+        <div class="header-actions">
+          <button class="btn btn-secondary" id="exportBtn" title="Export Pet File">
+            <span>📥</span> Export Dossier
+          </button>
+          <button class="btn btn-primary" id="rewardBtn">
+            <span>🦴</span> Issue Bonus Treat
+          </button>
+        </div>
+      </header>
+
+      <!-- Profile Hero Banner -->
+      <section class="profile-hero" id="overview">
+        <div class="profile-cover">
+          <div class="status-pill active-status">● Full-Time Good Boy</div>
+        </div>
+        <div class="profile-header-body">
+          <div class="avatar-container">
+            <div class="avatar-ring" id="petAvatar">🐕</div>
+            <span class="badge-tier" title="Top Performer">Elite Pet</span>
+          </div>
+          <div class="hero-details">
+            <div class="title-row">
+              <h1 id="petName">Barnaby von Bark</h1>
+              <span class="employee-id" id="petEmpId">EMP-#PAW-2049</span>
+              <span class="dept-tag" id="petDept">Security & Barketing</span>
+            </div>
+            <p class="role-desc" id="petTitle">Senior VP of Doorbell Alerting & Perimeter Fetch Operations</p>
+            <div class="hero-meta-tags">
+              <span class="meta-tag">🏷️ Golden Retriever (4 yrs old)</span>
+              <span class="meta-tag">📍 HQ Office Floor 2 (Sofa Station)</span>
+              <span class="meta-tag">💼 Tenured: 2 yrs 7 mos</span>
+              <span class="meta-tag">🩺 Microchip Verified #883-992-1</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HR Summary Metrics Grid -->
+      <section class="metrics-grid">
+        <!-- Metric 1: Salary / Treats -->
+        <div class="metric-card">
+          <div class="metric-icon-box bg-gold">🥩</div>
+          <div class="metric-info">
+            <span class="metric-label">Monthly Treat Comp</span>
+            <h3 class="metric-value" id="petSalary">4,200 Treats</h3>
+            <span class="metric-sub text-success">+$350 Kibble 401(k) Match</span>
+          </div>
+        </div>
+
+        <!-- Metric 2: Performance Score -->
+        <div class="metric-card">
+          <div class="metric-icon-box bg-purple">⭐</div>
+          <div class="metric-info">
+            <span class="metric-label">Overall Performance</span>
+            <h3 class="metric-value" id="petPerfScore">96.4%</h3>
+            <span class="metric-sub text-success">🏆 Exceeds Expectations</span>
+          </div>
+        </div>
+
+        <!-- Metric 3: Attendance -->
+        <div class="metric-card">
+          <div class="metric-icon-box bg-blue">🐾</div>
+          <div class="metric-info">
+            <span class="metric-label">Paws-in Attendance</span>
+            <h3 class="metric-value" id="petAttendanceRate">98.5%</h3>
+            <span class="metric-sub text-info">23/24 Days Active • 1 Nap Break</span>
+          </div>
+        </div>
+
+        <!-- Metric 4: Workplace Misconduct -->
+        <div class="metric-card">
+          <div class="metric-icon-box bg-red">⚠️</div>
+          <div class="metric-info">
+            <span class="metric-label">Conduct Infractions</span>
+            <h3 class="metric-value text-danger" id="petInfractionsCount">2 Records</h3>
+            <span class="metric-sub text-warning">1 Under Probation Review</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Detailed 4-Pillar Grid -->
+      <section class="details-section">
+        <div class="col-left">
+
+          <!-- 1. SALARY & COMPENSATION CARD -->
+          <div class="dashboard-card" id="compensation">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="badge-icon">💰</span>
+                <div>
+                  <h2>Compensation, Treats & Benefits Package</h2>
+                  <p class="card-subtitle">Transparent breakdown of canine/feline compensation</p>
+                </div>
+              </div>
+              <span class="badge-status-pill green">Active Payroll</span>
+            </div>
+            <div class="card-body">
+              <div class="salary-highlight">
+                <div class="salary-box">
+                  <span class="subtext">Annual Base Salary</span>
+                  <strong class="salary-num" id="salaryAnnual">50,400 Premium Biscuits</strong>
+                  <span class="tier-pill">Tier 4 Executive Level</span>
+                </div>
+                <div class="salary-box">
+                  <span class="subtext">Belly Rub Allowance</span>
+                  <strong class="salary-num">Unlimited Daily</strong>
+                  <span class="tier-pill">Tax Free Benefit</span>
+                </div>
+              </div>
+
+              <h4 class="section-mini-heading">Monthly Breakdown</h4>
+              <div class="comp-breakdown">
+                <div class="breakdown-row">
+                  <div class="item-name">
+                    <span>🥓 Prime Bacon Bites (Base Pay)</span>
+                  </div>
+                  <div class="bar-container">
+                    <div class="progress-bar bg-accent-amber" style="width: 70%;"></div>
+                  </div>
+                  <span class="item-amt">2,940 pcs</span>
+                </div>
+                <div class="breakdown-row">
+                  <div class="item-name">
+                    <span>🎾 Tennis Ball Equipment Stipend</span>
+                  </div>
+                  <div class="bar-container">
+                    <div class="progress-bar bg-accent-blue" style="width: 15%;"></div>
+                  </div>
+                  <span class="item-amt">630 pts</span>
+                </div>
+                <div class="breakdown-row">
+                  <div class="item-name">
+                    <span>🪥 Dental Chew Healthcare Retainer</span>
+                  </div>
+                  <div class="bar-container">
+                    <div class="progress-bar bg-accent-emerald" style="width: 15%;"></div>
+                  </div>
+                  <span class="item-amt">630 pts</span>
+                </div>
+              </div>
+
+              <div class="benefits-chips">
+                <span class="chip">🏥 Vet Comprehensive Coverage 100%</span>
+                <span class="chip">🛌 Orthopedic Memory Foam Bed In-Office</span>
+                <span class="chip">🌳 3 Daily Park Walking Breaks</span>
+                <span class="chip">🎂 Annual Barkday Paid Holiday</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. WORKPLACE MISCONDUCT CARD -->
+          <div class="dashboard-card" id="conduct">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="badge-icon danger-icon">🚨</span>
+                <div>
+                  <h2>Workplace Conduct & Incident Log</h2>
+                  <p class="card-subtitle">Formal Pet HR disciplinary records and remedial measures</p>
+                </div>
+              </div>
+              <button class="btn-sm btn-outline-danger" id="reportIncidentBtn">+ Log Incident</button>
+            </div>
+            <div class="card-body">
+              <div class="incident-alert-banner">
+                <span class="banner-icon">⚠️</span>
+                <div class="banner-text">
+                  <strong>Notice of Behavioral Compliance:</strong>
+                  Employee is required to maintain professional decorum during executive Zoom meetings and respect clean carpet zones.
+                </div>
+              </div>
+
+              <div class="incident-timeline" id="incidentList">
+                <!-- Incident 1 -->
+                <div class="incident-item severity-med">
+                  <div class="incident-time-node">
+                    <span class="incident-dot"></span>
+                    <span class="incident-date">Oct 02, 2026</span>
+                  </div>
+                  <div class="incident-card">
+                    <div class="incident-header">
+                      <h4 class="incident-title">Unsanctioned Slipper Dismantling</h4>
+                      <span class="severity-badge warning">Medium Infraction</span>
+                    </div>
+                    <p class="incident-desc">Barnaby removed CFO's ergonomic shearling slipper from under desk 4B and shredded the heel support during Q3 budget review.</p>
+                    <div class="incident-footer">
+                      <span class="resolution"><strong>Remedy:</strong> Replacement funded via chew-toy credit; required 15-minute time out on the rug.</span>
+                      <span class="status-tag status-resolved">Resolved</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Incident 2 -->
+                <div class="incident-item severity-high">
+                  <div class="incident-time-node">
+                    <span class="incident-dot"></span>
+                    <span class="incident-date">Sep 18, 2026</span>
+                  </div>
+                  <div class="incident-card">
+                    <div class="incident-header">
+                      <h4 class="incident-title">Excessive Decibel Barking at Mail Carrier</h4>
+                      <span class="severity-badge critical">Severe Disruption</span>
+                    </div>
+                    <p class="incident-desc">Screamed at 108 dB when FedEx courier arrived. Disrupted high-stakes client closing call with overseas stakeholders.</p>
+                    <div class="incident-footer">
+                      <span class="resolution"><strong>Remedy:</strong> Enrolled in "Calm Greetings for High Achievers" behavioral workshop.</span>
+                      <span class="status-tag status-probation">On Probation</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-right">
+
+          <!-- 3. PERFORMANCE EVALUATION CARD -->
+          <div class="dashboard-card" id="performance">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="badge-icon">🎯</span>
+                <div>
+                  <h2>Quarterly Performance Matrix</h2>
+                  <p class="card-subtitle">Key Performance Indicators & Competencies</p>
+                </div>
+              </div>
+              <span class="rating-chip">Rating: 4.8 / 5.0</span>
+            </div>
+            <div class="card-body">
+              <!-- KPI Skill Ratings -->
+              <div class="kpi-group" id="kpiContainer">
+                <div class="kpi-item">
+                  <div class="kpi-info">
+                    <span class="kpi-name">Doorbell Vigilance & Alert Speed</span>
+                    <span class="kpi-val">99%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill bg-success" style="width: 99%;"></div>
+                  </div>
+                  <small class="kpi-note">Sub-second reaction latency across all entries.</small>
+                </div>
+
+                <div class="kpi-item">
+                  <div class="kpi-info">
+                    <span class="kpi-name">Stick & Ball Retrieval Accuracy</span>
+                    <span class="kpi-val">95%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill bg-success" style="width: 95%;"></div>
+                  </div>
+                  <small class="kpi-note">High retrieve velocity; occasionally hesitates to drop.</small>
+                </div>
+
+                <div class="kpi-item">
+                  <div class="kpi-info">
+                    <span class="kpi-name">Tail Wag Morale Boosting</span>
+                    <span class="kpi-val">100%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill bg-brand" style="width: 100%;"></div>
+                  </div>
+                  <small class="kpi-note">Significantly improves cross-team happiness index.</small>
+                </div>
+
+                <div class="kpi-item">
+                  <div class="kpi-info">
+                    <span class="kpi-name">Snack Impulse Self-Regulation</span>
+                    <span class="kpi-val">78%</span>
+                  </div>
+                  <div class="meter-track">
+                    <div class="meter-fill bg-warning" style="width: 78%;"></div>
+                  </div>
+                  <small class="kpi-note">Requires gentle coaching when cheese is left unattended.</small>
+                </div>
+              </div>
+
+              <!-- Manager Review Quote -->
+              <div class="review-quote-box">
+                <div class="quote-header">
+                  <strong>💬 Manager Evaluation Note</strong>
+                  <span class="timestamp">Reviewed Oct 10, 2026</span>
+                </div>
+                <p id="managerReviewText">"Barnaby is indispensable to company spirit. His devotion to perimeter surveillance is unmatched, though continued attention is recommended for shoe-chewing impulse control."</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. ATTENDANCE & SHIFT LOG CARD -->
+          <div class="dashboard-card" id="attendance">
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="badge-icon">🕒</span>
+                <div>
+                  <h2>Attendance & Daily Nap Cycles</h2>
+                  <p class="card-subtitle">Clock-in, nap logs, and field exercise time</p>
+                </div>
+              </div>
+              <div class="attendance-stat-pill">
+                <span>Punctuality: </span>
+                <strong class="text-success">99.1%</strong>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Calendar Week Strip -->
+              <div class="calendar-strip">
+                <div class="cal-day present">
+                  <span class="day-name">Mon</span>
+                  <span class="day-date">06</span>
+                  <span class="day-tag">Present</span>
+                </div>
+                <div class="cal-day present">
+                  <span class="day-name">Tue</span>
+                  <span class="day-date">07</span>
+                  <span class="day-tag">Present</span>
+                </div>
+                <div class="cal-day present">
+                  <span class="day-name">Wed</span>
+                  <span class="day-date">08</span>
+                  <span class="day-tag">Present</span>
+                </div>
+                <div class="cal-day nap-leave">
+                  <span class="day-name">Thu</span>
+                  <span class="day-date">09</span>
+                  <span class="day-tag">Vet PTO</span>
+                </div>
+                <div class="cal-day present active-today">
+                  <span class="day-name">Fri</span>
+                  <span class="day-date">10</span>
+                  <span class="day-tag">On Duty</span>
+                </div>
+                <div class="cal-day weekend">
+                  <span class="day-name">Sat</span>
+                  <span class="day-date">11</span>
+                  <span class="day-tag">Park</span>
+                </div>
+                <div class="cal-day weekend">
+                  <span class="day-name">Sun</span>
+                  <span class="day-date">12</span>
+                  <span class="day-tag">Rest</span>
+                </div>
+              </div>
+
+              <!-- Today's Live Clock-In Table -->
+              <div class="timecard-table-wrap">
+                <table class="timecard-table">
+                  <thead>
+                    <tr>
+                      <th>Shift Activity</th>
+                      <th>Time Range</th>
+                      <th>Duration</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>🌅 Morning Perimeter Sniff Patrol</td>
+                      <td>08:00 AM - 10:30 AM</td>
+                      <td>2h 30m</td>
+                      <td><span class="badge-status-pill green">Completed</span></td>
+                    </tr>
+                    <tr>
+                      <td>😴 Scheduled Sunshine Nap (East Rug)</td>
+                      <td>10:45 AM - 01:15 PM</td>
+                      <td>2h 30m</td>
+                      <td><span class="badge-status-pill blue">Approved Rest</span></td>
+                    </tr>
+                    <tr>
+                      <td>🎾 Active Zoom Meeting Moral Support</td>
+                      <td>01:30 PM - 03:00 PM</td>
+                      <td>1h 30m</td>
+                      <td><span class="badge-status-pill green">Completed</span></td>
+                    </tr>
+                    <tr>
+                      <td>🐕 Lobby Welcome & Treat Inspection</td>
+                      <td>03:15 PM - Present</td>
+                      <td>In Progress</td>
+                      <td><span class="badge-status-pill amber">Live Active</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="pto-balance-card">
+                <div class="pto-item">
+                  <span class="pto-label">Park PTO Left</span>
+                  <span class="pto-val">14 Days</span>
+                </div>
+                <div class="pto-item">
+                  <span class="pto-label">Nap Credits</span>
+                  <span class="pto-val">42 Hours</span>
+                </div>
+                <div class="pto-item">
+                  <span class="pto-label">Sick/Grooming Leave</span>
+                  <span class="pto-val">5 Days</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Interactive Modal for Adding Incident -->
+  <div class="modal-backdrop" id="incidentModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🚨 Log Pet Misconduct Incident</h3>
+        <button class="close-modal" id="closeModalBtn">&times;</button>
+      </div>
+      <form id="incidentForm" class="modal-form">
+        <div class="form-group">
+          <label for="incidentTitle">Incident Title</label>
+          <input type="text" id="incidentTitle" required placeholder="e.g. Unsanctioned zoomies in conference hall">
+        </div>
+        <div class="form-group">
+          <label for="incidentSeverity">Severity Tier</label>
+          <select id="incidentSeverity">
+            <option value="Minor Infraction">Minor (Excessive Licking / Begging)</option>
+            <option value="Medium Infraction" selected>Medium (Shoe Chew / Muddy Paws)</option>
+            <option value="Severe Disruption">Severe (Stolen Lunch / Loud Barking)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="incidentNotes">Description & Evidence</label>
+          <textarea id="incidentNotes" rows="3" required placeholder="Detailed behavior notes and workplace disruption impact..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="incidentRemedy">Corrective Action Plan</label>
+          <input type="text" id="incidentRemedy" required placeholder="e.g. 10m crate timeout, obedience refresher training">
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="btn btn-danger">File Incident Report</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
